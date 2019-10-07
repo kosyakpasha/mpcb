@@ -9,7 +9,7 @@ export let dbOptions: ConnectionOptions = {
   password: 'password',
   database: 'db',
   entities: [
-    './entities/*.js',
+    __dirname + '\\entities\\*-entity.js',
   ],
   synchronize: true,
 };
