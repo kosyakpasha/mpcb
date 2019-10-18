@@ -1,8 +1,8 @@
-import { Request, Response, } from 'express';
-import { inspect, } from 'util';
-import { UserRepo, } from '../repository/user-repository';
-import { UserEntity, } from '../entities/user-entity';
-import { BaseResponse, } from '../base-response';
+import { Request, Response } from 'express';
+import { inspect } from 'util';
+import { UserRepo } from '../repository/user-repository';
+import { UserEntity } from '../entities/user-entity';
+import { BaseResponse } from '../base-response';
 
 export let getAllUsers = async (req: Request, res: Response) => {
   console.log('GET => GetAllUsers');
@@ -31,6 +31,7 @@ export let setUser = async (req: Request, res: Response) => {
 
   try {
     userEntity.id = req.body.id;
+    userEntity.username = req.body.username;
     let result = await userRepo.saveUser(userEntity);
     console.log(result);
     baseResponse.isSuccess = true;
