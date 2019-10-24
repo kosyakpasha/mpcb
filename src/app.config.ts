@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import {ConnectionOptions,} from 'typeorm';
 
-export let dbOptions: ConnectionOptions = {
+export const dbOptions: ConnectionOptions = {
   type: 'mysql',
   host: 'localhost',
   port: 3306,

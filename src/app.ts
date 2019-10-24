@@ -6,6 +6,7 @@ import { createConnection, } from 'typeorm';
 import * as appConfig from './app.config';
 
 import * as userController from './controllers/user-controller';
+import * as listingItemController from './controllers/listing-item-controller';
 
 const app = express();
 app.use(bodyParser.json());
@@ -23,6 +24,9 @@ app.get('/', (req, res) => {
 });
 app.get('/users', userController.getAllUsers);
 app.post('/add-user', userController.setUser);
+
+app.get('/listing-items', listingItemController.getAllListingItems);
+app.post('/add-listing-item', listingItemController.setListingItem);
 
 createConnection(appConfig.dbOptions).then(async () => {
   console.log('Connected to DB');
