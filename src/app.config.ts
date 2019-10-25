@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import {ConnectionOptions,} from 'typeorm';
 
-export let dbOptions: ConnectionOptions = {
+export const dbOptions: ConnectionOptions = {
   type: 'mysql',
   host: 'localhost',
   port: 3306,
@@ -9,7 +9,7 @@ export let dbOptions: ConnectionOptions = {
   password: 'password',
   database: 'db',
   entities: [
-    './entities/*.js',
+    __dirname + '\\entities\\*-entity.js',
   ],
   synchronize: true,
 };

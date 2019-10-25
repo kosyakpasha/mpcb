@@ -3,38 +3,30 @@ import * as bodyParser from 'body-parser';
 import 'reflect-metadata';
 import { createConnection, } from 'typeorm';
 
-import * as appConfig from './common/app-config';
+import * as appConfig from './app.config';
 
-/**
- * Controllers (route handlers).
- */
 import * as userController from './controllers/user-controller';
+import * as listingItemController from './controllers/listing-item-controller';
 
-/**
- * Create Express server.
- */
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true, }));
 
-/**
- * Express configuration.
- */
 app.set('port', process.env.PORT || 9999);
 
-/**
- * Start Express server.
- */
 app.listen(app.get('port'), () => {
   console.log(('  App is running at http://localhost:%d in %s mode'), app.get('port'), app.get('env'));
   console.log('  Press CTRL-C to stop\n');
 });
 
-/**
- * Primary app routes.
- */
+app.get('/', (req, res) => {
+  res.send(appConfig)
+});
 app.get('/users', userController.getAllUsers);
 app.post('/add-user', userController.setUser);
+
+app.get('/listing-items', listingItemController.getAllListingItems);
+app.post('/add-listing-item', listingItemController.setListingItem);
 
 createConnection(appConfig.dbOptions).then(async () => {
   console.log('Connected to DB');
